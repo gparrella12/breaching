@@ -301,6 +301,11 @@ def _construct_vision_model(cfg_model, cfg_data, pretrained=True, **kwargs):
                 stem="CIFAR",
                 convolution_type="Standard",
             )
+        # add VGG FACE as available model
+        elif "vggface" in cfg_model:
+            from facenet_pytorch import InceptionResnetV1
+            # Create an inception resnet
+            model = InceptionResnetV1(pretrained='vggface2')    
         elif "vgg" in cfg_model.lower():
             model = VGG(
                 cfg_model,
@@ -404,11 +409,6 @@ def _construct_vision_model(cfg_model, cfg_data, pretrained=True, **kwargs):
                     ]
                 )
             )
-                    # add VGG FACE as available model
-        elif "vggface" in cfg_model:
-                from facenet_pytorch import InceptionResnetV1
-                # Create an inception resnet
-                model = InceptionResnetV1(pretrained='vggface2')    
         else:
             raise ValueError("Model could not be found.")
 
