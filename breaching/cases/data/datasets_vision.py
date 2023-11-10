@@ -53,7 +53,7 @@ def _build_dataset_vision(cfg_data, split, can_download=True):
         dataset = Birdsnap(root=cfg_data.path, split=split, download=can_download, transform=_default_t)
         dataset.lookup = dict(zip(list(range(len(dataset))), dataset.labels))
     elif cfg_data.name == "LFWPeople":
-        dataset = torchvision.datasets.LFWPeople(root=cfg_data.path, split=split, download=can_download, transform=_default_t)
+        dataset = torchvision.datasets.LFWPeople(root=cfg_data.path, split="train" if "train" in split else "test", download=can_download, transform=_default_t)
         dataset.lookup = dict(zip(list(range(len(dataset))), dataset.targets))
     else:
         raise ValueError(f"Invalid dataset {cfg_data.name} provided.")
