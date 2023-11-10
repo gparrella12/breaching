@@ -238,11 +238,11 @@ def _construct_vision_model(cfg_model, cfg_data, pretrained=True, **kwargs):
                 model = torch.nn.Sequential(torch.nn.Flatten(), torch.nn.Linear(input_dim, classes))
             elif "none" == cfg_model:
                 model = torch.nn.Sequential(torch.nn.Flatten(), _Select(classes))
-            # add VGG FACE as available model
-            elif "vggface" in cfg_model:
+        # add VGG FACE as available model
+            elif "vggface2" == cfg_model or "casia-webface" == cfg_model:
                 from facenet_pytorch import InceptionResnetV1
                 # Create an inception resnet
-                model = InceptionResnetV1(pretrained='vggface2')
+                model = InceptionResnetV1(pretrained = cfg_model , classify = True)    
             else:
                 raise ValueError(f"Could not find ImageNet model {cfg_model} in torchvision.models or custom models.")
     else:
@@ -302,10 +302,10 @@ def _construct_vision_model(cfg_model, cfg_data, pretrained=True, **kwargs):
                 convolution_type="Standard",
             )
         # add VGG FACE as available model
-        elif "vggface" in cfg_model:
+        elif "vggface2" == cfg_model or "casia-webface" == cfg_model:
             from facenet_pytorch import InceptionResnetV1
             # Create an inception resnet
-            model = InceptionResnetV1(pretrained='casia-webface', classify = True)    
+            model = InceptionResnetV1(pretrained = cfg_model , classify = True)    
         elif "vgg" in cfg_model.lower():
             model = VGG(
                 cfg_model,
