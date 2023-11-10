@@ -305,7 +305,7 @@ def _construct_vision_model(cfg_model, cfg_data, pretrained=True, **kwargs):
         elif "vggface" in cfg_model:
             from facenet_pytorch import InceptionResnetV1
             # Create an inception resnet
-            model = InceptionResnetV1(pretrained='vggface2')    
+            model = InceptionResnetV1(pretrained='casia-webface')    
         elif "vgg" in cfg_model.lower():
             model = VGG(
                 cfg_model,
