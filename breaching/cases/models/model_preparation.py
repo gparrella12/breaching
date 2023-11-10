@@ -238,6 +238,11 @@ def _construct_vision_model(cfg_model, cfg_data, pretrained=True, **kwargs):
                 model = torch.nn.Sequential(torch.nn.Flatten(), torch.nn.Linear(input_dim, classes))
             elif "none" == cfg_model:
                 model = torch.nn.Sequential(torch.nn.Flatten(), _Select(classes))
+            # add VGG FACE as available model
+            elif "vggface" in cfg_model:
+                from facenet_pytorch import InceptionResnetV1
+                # Create an inception resnet
+                model = InceptionResnetV1(pretrained='vggface2')
             else:
                 raise ValueError(f"Could not find ImageNet model {cfg_model} in torchvision.models or custom models.")
     else:
@@ -399,6 +404,11 @@ def _construct_vision_model(cfg_model, cfg_data, pretrained=True, **kwargs):
                     ]
                 )
             )
+                    # add VGG FACE as available model
+        elif "vggface" in cfg_model:
+                from facenet_pytorch import InceptionResnetV1
+                # Create an inception resnet
+                model = InceptionResnetV1(pretrained='vggface2')    
         else:
             raise ValueError("Model could not be found.")
 
