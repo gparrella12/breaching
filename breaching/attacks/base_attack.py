@@ -41,7 +41,18 @@ class _BaseAttacker:
         raise NotImplementedError()
 
     def prepare_attack(self, server_payload, shared_data):
-        """Basic startup common to many reconstruction methods."""
+        """
+            Prepares the attack by initializing common startup operations required by many reconstruction methods.
+
+            Args:
+            - server_payload (list): List of data from the server.
+            - shared_data (list): Shared data for the attack.
+
+            Returns:
+            - rec_models (object): Reconstruction models prepared for the attack.
+            - labels (object): Label information for the attack.
+            - stats (dict): Dictionary containing statistics collected during the preparation of the attack.
+        """
         stats = defaultdict(list)
 
         shared_data = shared_data.copy()  # Shallow copy is enough

@@ -92,7 +92,7 @@ def main():
     reconstructed_user_data, stats = attacker.reconstruct(server_payload, shared_data, secrets, dryrun=False)
 
     # Do some processing of your choice here. Maybe save the output image?
-
+    print("ok")
 
 if __name__ == "__main__":
     main()

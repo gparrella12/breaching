@@ -88,8 +88,25 @@ class OptimizationBasedAttacker(_BaseAttacker):
         return reconstructed_data, stats
 
     def _run_trial(self, rec_model, shared_data, labels, stats, trial, initial_data=None, dryrun=False):
-        """Run a single reconstruction trial."""
+        """
+        Run a single reconstruction trial.
 
+        Args:
+            rec_model (object): The reconstruction model.
+            shared_data (list): List of shared data.
+            labels (list): List of labels.
+            stats (dict): Dictionary to store statistics.
+            trial (int): The trial number.
+            initial_data (object, optional): Initial data for the trial. Defaults to None.
+            dryrun (bool, optional): Flag indicating whether to run in dry-run mode. Defaults to False.
+
+        Returns:
+            object: The best candidate reconstruction data.
+
+        Raises:
+            KeyboardInterrupt: If the recovery process is interrupted manually.
+
+        """
         # Initialize losses:
         for regularizer in self.regularizers:
             regularizer.initialize(rec_model, shared_data, labels)
@@ -97,6 +114,7 @@ class OptimizationBasedAttacker(_BaseAttacker):
 
         # Initialize candidate reconstruction data
         candidate = self._initialize_data([shared_data[0]["metadata"]["num_data_points"], *self.data_shape])
+        #print("\nCandidate.data shape:\n", candidate.data.shape,"\n") e.g.: torch.Size([1, 3, 224, 224])
         if initial_data is not None:
             candidate.data = initial_data.data.clone().to(**self.setup)
 

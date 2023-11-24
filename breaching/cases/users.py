@@ -265,9 +265,10 @@ class UserSingleStep(torch.nn.Module):
                 print(bg_color(decoded_token + " ", token == gt_token), end="")
             print("\n")
 
-    def plot(self, user_data, scale=False, print_labels=False):
+    def plot(self, user_data, scale=False, print_labels=False, save_file=None):
         """Plot user data to output. Probably best called from a jupyter notebook."""
         import matplotlib.pyplot as plt  # lazily import this here
+        import os
 
         dm = torch.as_tensor(self.dataloader.dataset.mean, **self.setup)[None, :, None, None]
         ds = torch.as_tensor(self.dataloader.dataset.std, **self.setup)[None, :, None, None]
@@ -280,7 +281,6 @@ class UserSingleStep(torch.nn.Module):
 
         if scale:
             min_val, max_val = data.amin(dim=[2, 3], keepdim=True), data.amax(dim=[2, 3], keepdim=True)
-            # print(f'min_val: {min_val} | max_val: {max_val}')
             data = (data - min_val) / (max_val - min_val)
         else:
             data.mul_(ds).add_(dm).clamp_(0, 1)
@@ -303,6 +303,13 @@ class UserSingleStep(torch.nn.Module):
                 axis.axis("off")
             if print_labels:
                 print(label_classes)
+
+        if save_file is not None:
+            plt.savefig(save_file)
+            print("Saved to", save_file)
+        else:
+            plt.show()
+
 
 
 class UserMultiStep(UserSingleStep):

@@ -1,0 +1,192 @@
+Investigating use case large_batch_cifar with server type honest_but_curious.
+Files already downloaded and verified
+Model architecture vggface2 loaded with 27,910,327 parameters and 29,712 buffers.
+Overall this is a data ratio of      74:1 for target shape [2, 3, 250, 250] given that num_queries=1.
+User (of type UserSingleStep) with settings:
+    Number of data points: 2
+
+    Threat model:
+    User provides labels: False
+    User provides buffers: True
+    User provides number of data points: True
+
+    Data:
+    Dataset: LFWPeople
+    user: 0
+    
+        
+Server (of type HonestServer) with settings:
+    Threat model: Honest-but-curious
+    Number of planned queries: 1
+    Has external/public data: False
+
+    Model:
+        model specification: vggface2
+        model state: default
+        public buffers: False
+
+    Secrets: {}
+    
+Attacker (of type OptimizationBasedAttacker) with settings:
+    Hyperparameter Template: see-through-gradients
+
+    Objective: Euclidean loss with scale=0.0001 and task reg=0.0
+    Regularizers: Total Variation, scale=0.0001. p=1 q=1. 
+                  Input L^p norm regularization, scale=1e-06, p=2
+                  Deep Inversion Regularization (matching batch norms), scale=0.1, first-bn-mult=10
+    Augmentations: 
+
+    Optimization Setup:
+        optimizer: adam
+        signed: False
+        step_size: 0.1
+        boxed: True
+        max_iterations: 24000
+        step_size_decay: cosine-decay
+        langevin_noise: 0.01
+        warmup: 50
+        grad_clip: None
+        callback: 1000
+        
+Computing user update on user 0 in model mode: training.
+Saved to /user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_pre.png
+Reconstructing user data...
+Files already downloaded and verified
+Recovered labels [2084, 3949] through strategy yin.
+| It: 1 | Rec. loss: 108.4568 |  Task loss: 24.8651 | T: 1.38s
+| It: 1001 | Rec. loss: 5.6968 |  Task loss: 0.0240 | T: 204.23s
+| It: 2001 | Rec. loss: 5.0154 |  Task loss: 0.0274 | T: 200.70s| It: 3001 | Rec. loss: 4.8619 |  Task loss: 0.0160 | T: 202.04s
+| It: 4001 | Rec. loss: 5.0023 |  Task loss: 0.0318 | T: 201.74s
+| It: 5001 | Rec. loss: 4.8823 |  Task loss: 0.0285 | T: 201.68s
+| It: 6001 | Rec. loss: 4.7508 |  Task loss: 0.0129 | T: 201.74s
+| It: 7001 | Rec. loss: 8.4097 |  Task loss: 0.0219 | T: 201.54s
+| It: 8001 | Rec. loss: 4.6163 |  Task loss: 0.0240 | T: 201.64s
+| It: 9001 | Rec. loss: 4.3272 |  Task loss: 0.0145 | T: 201.90s
+| It: 10001 | Rec. loss: 3.9384 |  Task loss: 0.0253 | T: 202.26s
+| It: 11001 | Rec. loss: 3.4731 |  Task loss: 0.0140 | T: 202.97s
+| It: 12001 | Rec. loss: 3.1104 |  Task loss: 0.0155 | T: 202.32s
+| It: 13001 | Rec. loss: 2.6799 |  Task loss: 0.0188 | T: 202.21s
+| It: 14001 | Rec. loss: 2.4059 |  Task loss: 0.0188 | T: 202.42s
+| It: 15001 | Rec. loss: 2.3055 |  Task loss: 0.0185 | T: 201.71s
+| It: 16001 | Rec. loss: 1.9834 |  Task loss: 0.0206 | T: 202.10s
+| It: 17001 | Rec. loss: 1.8637 |  Task loss: 0.0253 | T: 202.01s
+| It: 18001 | Rec. loss: 1.6910 |  Task loss: 0.0241 | T: 202.51s
+| It: 19001 | Rec. loss: 1.5419 |  Task loss: 0.0223 | T: 201.95s
+| It: 20001 | Rec. loss: 1.4741 |  Task loss: 0.0218 | T: 202.15s
+| It: 21001 | Rec. loss: 1.4293 |  Task loss: 0.0224 | T: 201.71s
+| It: 22001 | Rec. loss: 1.4000 |  Task loss: 0.0256 | T: 201.68s
+| It: 23001 | Rec. loss: 1.3866 |  Task loss: 0.0257 | T: 201.64s
+| It: 24000 | Rec. loss: 1.3829 |  Task loss: 0.0259 | T: 201.16s
+| It: 1 | Rec. loss: 108.4576 |  Task loss: 24.8651 | T: 0.24s
+| It: 1001 | Rec. loss: 5.5724 |  Task loss: 0.0153 | T: 216.44s
+| It: 2001 | Rec. loss: 5.0555 |  Task loss: 0.0119 | T: 217.52s
+| It: 3001 | Rec. loss: 4.9429 |  Task loss: 0.0135 | T: 218.75s
+| It: 4001 | Rec. loss: 4.9394 |  Task loss: 0.0207 | T: 217.82s
+| It: 5001 | Rec. loss: 6.1642 |  Task loss: 0.0175 | T: 217.41s
+| It: 6001 | Rec. loss: 4.8628 |  Task loss: 0.0184 | T: 217.76s
+| It: 7001 | Rec. loss: 4.6455 |  Task loss: 0.0113 | T: 217.38s
+| It: 8001 | Rec. loss: 5.9608 |  Task loss: 0.0222 | T: 217.53s
+| It: 9001 | Rec. loss: 4.4832 |  Task loss: 0.0225 | T: 217.23s
+| It: 10001 | Rec. loss: 3.7916 |  Task loss: 0.0268 | T: 217.04s
+| It: 11001 | Rec. loss: 3.4015 |  Task loss: 0.0204 | T: 216.91s
+| It: 12001 | Rec. loss: 3.2443 |  Task loss: 0.0194 | T: 216.95s
+| It: 13001 | Rec. loss: 2.8217 |  Task loss: 0.0179 | T: 216.84s
+| It: 14001 | Rec. loss: 2.3912 |  Task loss: 0.0114 | T: 217.68s
+| It: 15001 | Rec. loss: 2.1959 |  Task loss: 0.0186 | T: 217.22s
+| It: 16001 | Rec. loss: 1.9258 |  Task loss: 0.0200 | T: 217.79s
+| It: 17001 | Rec. loss: 1.8392 |  Task loss: 0.0200 | T: 217.83s
+| It: 18001 | Rec. loss: 1.6958 |  Task loss: 0.0184 | T: 217.70s
+| It: 19001 | Rec. loss: 1.5609 |  Task loss: 0.0189 | T: 216.57s
+| It: 20001 | Rec. loss: 1.4897 |  Task loss: 0.0197 | T: 216.67s
+| It: 21001 | Rec. loss: 1.4489 |  Task loss: 0.0195 | T: 216.53s
+| It: 22001 | Rec. loss: 1.4196 |  Task loss: 0.0204 | T: 216.50s
+| It: 23001 | Rec. loss: 1.4068 |  Task loss: 0.0201 | T: 217.18s
+| It: 24000 | Rec. loss: 1.4044 |  Task loss: 0.0206 | T: 216.93s
+| It: 1 | Rec. loss: 108.4567 |  Task loss: 24.8651 | T: 0.25s
+| It: 1001 | Rec. loss: 5.5647 |  Task loss: 0.0175 | T: 231.74s
+| It: 2001 | Rec. loss: 4.9771 |  Task loss: 0.0130 | T: 231.55s
+| It: 3001 | Rec. loss: 4.8070 |  Task loss: 0.0079 | T: 231.40s
+| It: 4001 | Rec. loss: 6.0605 |  Task loss: 0.0195 | T: 231.47s
+| It: 5001 | Rec. loss: 4.9260 |  Task loss: 0.0168 | T: 230.91s
+| It: 6001 | Rec. loss: 5.1259 |  Task loss: 0.0089 | T: 230.99s
+| It: 7001 | Rec. loss: 4.5758 |  Task loss: 0.0112 | T: 230.99s
+| It: 8001 | Rec. loss: 4.3803 |  Task loss: 0.0183 | T: 230.80s
+| It: 9001 | Rec. loss: 4.0098 |  Task loss: 0.0189 | T: 230.77s
+| It: 10001 | Rec. loss: 3.7402 |  Task loss: 0.0201 | T: 230.67s
+| It: 11001 | Rec. loss: 3.3118 |  Task loss: 0.0143 | T: 230.91s
+| It: 12001 | Rec. loss: 3.0360 |  Task loss: 0.0163 | T: 231.15s
+| It: 13001 | Rec. loss: 2.6667 |  Task loss: 0.0162 | T: 231.45s
+| It: 14001 | Rec. loss: 2.4222 |  Task loss: 0.0249 | T: 231.49s
+| It: 15001 | Rec. loss: 2.1241 |  Task loss: 0.0175 | T: 231.58s
+| It: 16001 | Rec. loss: 1.9094 |  Task loss: 0.0273 | T: 231.44s
+| It: 17001 | Rec. loss: 1.7795 |  Task loss: 0.0217 | T: 231.42s
+| It: 18001 | Rec. loss: 1.6017 |  Task loss: 0.0221 | T: 231.34s
+| It: 19001 | Rec. loss: 1.4872 |  Task loss: 0.0234 | T: 231.39s
+| It: 20001 | Rec. loss: 1.4076 |  Task loss: 0.0244 | T: 222.80s
+| It: 21001 | Rec. loss: 1.3645 |  Task loss: 0.0257 | T: 217.82s
+| It: 22001 | Rec. loss: 1.3320 |  Task loss: 0.0251 | T: 217.82s
+| It: 23001 | Rec. loss: 1.3179 |  Task loss: 0.0262 | T: 217.82s
+| It: 24000 | Rec. loss: 1.3156 |  Task loss: 0.0259 | T: 217.72s
+| It: 1 | Rec. loss: 108.4568 |  Task loss: 24.8651 | T: 0.24s
+| It: 1001 | Rec. loss: 6.0026 |  Task loss: 0.0233 | T: 231.48s
+| It: 2001 | Rec. loss: 5.1136 |  Task loss: 0.0184 | T: 231.46s
+| It: 3001 | Rec. loss: 4.8560 |  Task loss: 0.0213 | T: 231.56s
+| It: 4001 | Rec. loss: 4.8898 |  Task loss: 0.0138 | T: 231.59s
+| It: 5001 | Rec. loss: 14.1724 |  Task loss: 1.7777 | T: 231.61s
+| It: 6001 | Rec. loss: 5.4112 |  Task loss: 0.0198 | T: 231.61s
+| It: 7001 | Rec. loss: 4.7657 |  Task loss: 0.0151 | T: 231.73s
+| It: 8001 | Rec. loss: 4.3803 |  Task loss: 0.0220 | T: 231.74s
+| It: 9001 | Rec. loss: 4.1209 |  Task loss: 0.0138 | T: 231.66s
+| It: 10001 | Rec. loss: 3.8069 |  Task loss: 0.0146 | T: 231.58s
+| It: 11001 | Rec. loss: 3.4881 |  Task loss: 0.0136 | T: 231.71s
+| It: 12001 | Rec. loss: 7.6002 |  Task loss: 0.0194 | T: 231.78s
+| It: 13001 | Rec. loss: 3.6082 |  Task loss: 0.0229 | T: 231.65s
+| It: 14001 | Rec. loss: 2.8940 |  Task loss: 0.0162 | T: 231.63s
+| It: 15001 | Rec. loss: 2.4492 |  Task loss: 0.0176 | T: 231.67s
+| It: 16001 | Rec. loss: 2.1739 |  Task loss: 0.0197 | T: 231.67s
+| It: 17001 | Rec. loss: 1.9965 |  Task loss: 0.0236 | T: 231.56s
+| It: 18001 | Rec. loss: 1.8356 |  Task loss: 0.0258 | T: 232.48s
+| It: 19001 | Rec. loss: 1.6693 |  Task loss: 0.0238 | T: 232.01s
+| It: 20001 | Rec. loss: 1.5941 |  Task loss: 0.0246 | T: 232.21s
+| It: 21001 | Rec. loss: 1.5475 |  Task loss: 0.0250 | T: 231.50s
+| It: 22001 | Rec. loss: 1.5185 |  Task loss: 0.0252 | T: 231.04s
+| It: 23001 | Rec. loss: 1.5055 |  Task loss: 0.0248 | T: 230.80s
+| It: 24000 | Rec. loss: 1.5038 |  Task loss: 0.0232 | T: 230.60s
+| It: 1 | Rec. loss: 108.4564 |  Task loss: 24.8651 | T: 0.26s
+| It: 1001 | Rec. loss: 6.0499 |  Task loss: 0.0253 | T: 244.64s
+| It: 2001 | Rec. loss: 5.1604 |  Task loss: 0.0235 | T: 244.84s
+| It: 3001 | Rec. loss: 4.8665 |  Task loss: 0.0208 | T: 244.89s
+| It: 4001 | Rec. loss: 4.8533 |  Task loss: 0.0121 | T: 244.81s
+| It: 5001 | Rec. loss: 6.7537 |  Task loss: 0.0216 | T: 245.05s
+| It: 6001 | Rec. loss: 5.0542 |  Task loss: 0.0234 | T: 244.94s
+| It: 7001 | Rec. loss: 4.6367 |  Task loss: 0.0156 | T: 244.97s
+| It: 8001 | Rec. loss: 4.4852 |  Task loss: 0.0211 | T: 245.02s
+| It: 9001 | Rec. loss: 4.0893 |  Task loss: 0.0128 | T: 245.75s
+| It: 10001 | Rec. loss: 3.8764 |  Task loss: 0.0128 | T: 245.55s
+| It: 11001 | Rec. loss: 3.3897 |  Task loss: 0.0276 | T: 245.65s
+| It: 12001 | Rec. loss: 3.2091 |  Task loss: 0.0164 | T: 245.43s
+| It: 13001 | Rec. loss: 2.6040 |  Task loss: 0.0150 | T: 245.28s
+| It: 14001 | Rec. loss: 2.3751 |  Task loss: 0.0177 | T: 244.78s
+| It: 15001 | Rec. loss: 2.2298 |  Task loss: 0.0226 | T: 244.69s
+| It: 16001 | Rec. loss: 1.9925 |  Task loss: 0.0227 | T: 244.96s
+| It: 17001 | Rec. loss: 1.7430 |  Task loss: 0.0252 | T: 244.74s
+| It: 18001 | Rec. loss: 1.6080 |  Task loss: 0.0243 | T: 244.83s
+| It: 19001 | Rec. loss: 1.5021 |  Task loss: 0.0334 | T: 244.68s
+| It: 20001 | Rec. loss: 1.4344 |  Task loss: 0.0283 | T: 244.90s
+| It: 21001 | Rec. loss: 1.3892 |  Task loss: 0.0307 | T: 274.84s
+| It: 22001 | Rec. loss: 1.3599 |  Task loss: 0.0306 | T: 292.59s
+| It: 23001 | Rec. loss: 1.3461 |  Task loss: 0.0305 | T: 293.07s
+| It: 24000 | Rec. loss: 1.3430 |  Task loss: 0.0302 | T: 292.88s
+Optimal candidate solution with rec. loss 7112.6914 selected.
+Reconstruction stats:
+Starting evaluations for attack effectiveness report...
+/usr/local/lib/python3.8/dist-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Files already downloaded and verified
+Key 'vocab_size' is not in struct
+    full_key: case.data.vocab_size
+    object_type=dict
+None
+Saved to /user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vgg_face_post.png

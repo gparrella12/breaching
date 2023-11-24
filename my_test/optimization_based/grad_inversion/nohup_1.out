@@ -1,0 +1,93 @@
+Investigating use case large_batch_cifar with server type honest_but_curious.
+Files already downloaded and verified
+Model architecture vggface2 loaded with 27,910,327 parameters and 29,712 buffers.
+Overall this is a data ratio of      74:1 for target shape [2, 3, 250, 250] given that num_queries=1.
+User (of type UserSingleStep) with settings:
+    Number of data points: 2
+
+    Threat model:
+    User provides labels: False
+    User provides buffers: True
+    User provides number of data points: True
+
+    Data:
+    Dataset: LFWPeople
+    user: 0
+    
+        
+Server (of type HonestServer) with settings:
+    Threat model: Honest-but-curious
+    Number of planned queries: 1
+    Has external/public data: False
+
+    Model:
+        model specification: vggface2
+        model state: default
+        public buffers: False
+
+    Secrets: {}
+    
+Attacker (of type OptimizationBasedAttacker) with settings:
+    Hyperparameter Template: see-through-gradients
+
+    Objective: Euclidean loss with scale=0.0001 and task reg=0.0
+    Regularizers: Total Variation, scale=0.0001. p=1 q=1. 
+                  Input L^p norm regularization, scale=1e-06, p=2
+                  Deep Inversion Regularization (matching batch norms), scale=0.1, first-bn-mult=10
+    Augmentations: 
+
+    Optimization Setup:
+        optimizer: adam
+        signed: False
+        step_size: 0.1
+        boxed: True
+        max_iterations: 24000
+        step_size_decay: cosine-decay
+        langevin_noise: 0.01
+        warmup: 50
+        grad_clip: None
+        callback: 1000
+        
+Computing user update on user 0 in model mode: training.
+Saved to /user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/resnet_lfw.png
+Reconstructing user data...
+Files already downloaded and verified
+Recovered labels [1966, 3952] through strategy yin.
+| It: 1 | Rec. loss: 82.3479 |  Task loss: 24.4435 | T: 1.41s
+| It: 1001 | Rec. loss: 4.8408 |  Task loss: 0.0259 | T: 209.67s
+| It: 2001 | Rec. loss: 4.3734 |  Task loss: 0.0266 | T: 201.94s
+| It: 3001 | Rec. loss: 4.0145 |  Task loss: 0.0313 | T: 202.24s
+| It: 4001 | Rec. loss: 4.0790 |  Task loss: 0.0325 | T: 201.98s
+| It: 5001 | Rec. loss: 3.8722 |  Task loss: 0.0327 | T: 202.20s
+| It: 6001 | Rec. loss: 3.7116 |  Task loss: 0.0359 | T: 202.18s
+| It: 7001 | Rec. loss: 3.5771 |  Task loss: 0.0421 | T: 202.08s
+| It: 8001 | Rec. loss: 3.3401 |  Task loss: 0.0300 | T: 202.14s
+| It: 9001 | Rec. loss: 3.0748 |  Task loss: 0.0473 | T: 201.94s
+| It: 10001 | Rec. loss: 2.8155 |  Task loss: 0.0419 | T: 202.02s
+| It: 11001 | Rec. loss: 2.5496 |  Task loss: 0.0287 | T: 201.93s
+| It: 12001 | Rec. loss: 2.3345 |  Task loss: 0.0520 | T: 202.00s
+| It: 13001 | Rec. loss: 2.1186 |  Task loss: 0.0354 | T: 201.97s
+| It: 14001 | Rec. loss: 1.8963 |  Task loss: 0.0403 | T: 201.87s
+| It: 15001 | Rec. loss: 1.7334 |  Task loss: 0.0598 | T: 202.45s
+| It: 16001 | Rec. loss: 1.5917 |  Task loss: 0.0646 | T: 202.13s
+| It: 17001 | Rec. loss: 1.5070 |  Task loss: 0.0484 | T: 202.22s
+| It: 18001 | Rec. loss: 1.3968 |  Task loss: 0.0538 | T: 202.57s
+| It: 19001 | Rec. loss: 1.3167 |  Task loss: 0.0533 | T: 202.49s
+| It: 20001 | Rec. loss: 1.2657 |  Task loss: 0.0520 | T: 201.77s
+| It: 21001 | Rec. loss: 1.2286 |  Task loss: 0.0549 | T: 202.14s
+| It: 22001 | Rec. loss: 1.2065 |  Task loss: 0.0548 | T: 201.91s
+| It: 23001 | Rec. loss: 1.1965 |  Task loss: 0.0541 | T: 201.95s
+| It: 24000 | Rec. loss: 1.1942 |  Task loss: 0.0545 | T: 201.65s
+Optimal candidate solution with rec. loss 6646.4985 selected.
+Reconstruction stats:
+Starting evaluations for attack effectiveness report...
+/usr/local/lib/python3.8/dist-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+Files already downloaded and verified
+Key 'vocab_size' is not in struct
+    full_key: case.data.vocab_size
+    object_type=dict
+None
+Saved to /user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/resnet_cifar100_reconstructed.png

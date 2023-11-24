@@ -56,6 +56,10 @@ def _build_dataset_vision(cfg_data, split, can_download=True):
         dataset = torchvision.datasets.LFWPeople(root=cfg_data.path, split="train" if "train" in split else "test", download=can_download, transform=_default_t)
         dataset.lookup = dict(zip(list(range(len(dataset))), dataset.targets))
         dataset.classes = list(dataset._get_classes().keys())
+    elif cfg_data.name == "flickr_faces":
+        from torchvision import datasets
+        dataset = datasets.ImageFolder(root=cfg_data.path , transform=_default_t)
+        dataset.lookup = dict(  zip(list(range(len(dataset))), range(0, len(dataset)))  )
     else:
         raise ValueError(f"Invalid dataset {cfg_data.name} provided.")
 
