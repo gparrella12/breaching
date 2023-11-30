@@ -6,7 +6,7 @@ except ModuleNotFoundError:
     import os; os.chdir("..")
     import breaching
 
-import torch
+import torch, os
 import logging, sys
 logging.basicConfig(level=logging.INFO, handlers=[logging.StreamHandler(sys.stdout)], format='%(message)s')
 logger = logging.getLogger()
@@ -47,13 +47,16 @@ setup
 
 cfg.case.data.partition="random"
 cfg.case.user.user_idx = 0
-cfg.case.data.name = 'LFWPeople'
-cfg.case.data.partition = 'random'
-cfg.case.data.path = '~/data/imagenet'
-cfg.case.user.num_data_points = 2
-cfg.case.data.shape = [3, 250, 250]
 
-cfg.case.model = "vggface2" # also options are resnet50ssl or resnetmoco
+cfg.case.data.name = 'flickr_faces'
+cfg.case.data.path = '/user/gparrella/data/flickr_images'
+cfg.case.data.size = len(os.listdir("/user/gparrella/data/flickr_images"))
+cfg.case.data.classes = cfg.case.data.size
+
+cfg.case.user.num_data_points = 2
+#cfg.case.data.shape = [3, 250, 250]
+
+cfg.case.model = "vggface2"
 cfg.attack.optim.max_iterations = 32000
 #cfg.attack.optim.step_size = 0.1
 cfg.attack.optim.warmup = 100
@@ -74,7 +77,7 @@ breaching.utils.overview(server, user, attacker)
 server_payload = server.distribute_payload()
 shared_data, true_user_data = user.compute_local_updates(server_payload)
 
-user.plot(true_user_data, save_file='/user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_pre1.png')
+user.plot(true_user_data, save_file='/user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_flickr_pre.png')
 
 ########### Reconstruct user data ###########
 print("Reconstructing user data...")
@@ -99,4 +102,4 @@ except Exception as e:
     metrics = None
 print(metrics)
 # plot reconstructed data
-user.plot(reconstructed_user_data, save_file='/user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_post1.png')
+user.plot(reconstructed_user_data, save_file='/user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_flickr_post.png')

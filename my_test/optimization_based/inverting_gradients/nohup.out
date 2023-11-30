@@ -58,5 +58,20 @@ Computing user update on user 0 in model mode: eval.
 Saved to /user/gparrella/breaching/my_test/optimization_based/inverting_gradients/results/flickr_original.jpg
 Reconstructing user data...
 Files already downloaded and verified
-Recovered labels [27] through strategy yin.
-| It: 1 | Rec. loss: 0.0641 |  Task loss: 0.0000 | T: 14.65s
+Recovered labels [60] through strategy yin.
+| It: 1 | Rec. loss: 0.0216 |  Task loss: 0.0000 | T: 10.74s
+| It: 1001 | Rec. loss: 0.0061 |  Task loss: 0.0000 | T: 1132.77s
+| It: 2001 | Rec. loss: 0.0057 |  Task loss: 0.0000 | T: 1130.64s
+| It: 3001 | Rec. loss: 0.0059 |  Task loss: 0.0000 | T: 1126.15s
+| It: 4001 | Rec. loss: 0.0056 |  Task loss: 0.0000 | T: 1131.94s
+| It: 5001 | Rec. loss: 0.0060 |  Task loss: 0.0000 | T: 1132.29s
+| It: 6001 | Rec. loss: 0.0064 |  Task loss: 0.0000 | T: 1133.18s
+| It: 7001 | Rec. loss: 0.0066 |  Task loss: 0.0000 | T: 1133.33s
+| It: 8001 | Rec. loss: 0.0071 |  Task loss: 0.0000 | T: 1130.45s
+| It: 9001 | Rec. loss: 0.0066 |  Task loss: 0.0000 | T: 1168.71s
+| It: 10001 | Rec. loss: 0.0073 |  Task loss: 0.0000 | T: 1765.21s
+| It: 11001 | Rec. loss: 0.0094 |  Task loss: 0.0000 | T: 1814.67s
+| It: 12001 | Rec. loss: 0.0077 |  Task loss: 0.0000 | T: 1777.11s
+| It: 13001 | Rec. loss: 0.0062 |  Task loss: 0.0000 | T: 1767.54s
+| It: 14001 | Rec. loss: 0.0052 |  Task loss: 0.0000 | T: 1769.66s
+| It: 15001 | Rec. loss: 0.0073 |  Task loss: 0.0000 | T: 1776.28s
