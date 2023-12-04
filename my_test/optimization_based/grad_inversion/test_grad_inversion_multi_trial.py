@@ -15,7 +15,8 @@ import random
 for index in range(0, 3):
     print("Trial {}\n".format(index))
     ############# CONFIGURATION OBJECT #############
-    cfg = breaching.get_config(overrides=["attack=seethroughgradients","case=6_large_batch_cifar"])
+    cfg = breaching.get_config(overrides=["case=5_small_batch_imagenet", "attack=seethroughgradients"])
+
             
     device = torch.device(f'cuda:0') if torch.cuda.is_available() else torch.device('cpu')
     torch.backends.cudnn.benchmark = cfg.case.impl.benchmark
@@ -31,19 +32,17 @@ for index in range(0, 3):
     cfg.case.data.size = len(os.listdir("/user/gparrella/data/flickr_images"))
     cfg.case.data.classes = cfg.case.data.size
 
-    cfg.case.user.num_data_points = 2
+    cfg.case.user.num_data_points = 8
 
     cfg.case.model = "vggface2"
-    cfg.attack.optim.max_iterations = 32000
+    cfg.attack.optim.max_iterations = 160000
     #cfg.attack.optim.step_size = 0.1
     cfg.attack.optim.warmup = 100
 
     seed = random.randint(0, 100000)
     cfg.seed = seed
     print("Seed: {}".format(cfg.seed))
-    #cfg.attack.restarts.num_trials = 5
     # In this paper, there are no public buffers, but users send their batch norm statistic updates in combination 
-    # with their gradient updates to the server:
     cfg.case.server.provide_public_buffers = False
     cfg.case.user.provide_buffers = True
 
@@ -56,7 +55,7 @@ for index in range(0, 3):
     server_payload = server.distribute_payload()
     shared_data, true_user_data = user.compute_local_updates(server_payload)
 
-    user.plot(true_user_data, save_file='/user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_flickr_pre{}.png'.format(index))
+    user.plot(true_user_data, save_file='/user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/{}_flickr_{}_pre{}_1.png'.format(cfg.case.model , cfg.case.user.num_data_points ,index))
 
     ########### Reconstruct user data ###########
     print("Reconstructing user data...")
@@ -65,9 +64,11 @@ for index in range(0, 3):
     _default_t = torchvision.transforms.ToTensor()
     dataset = torchvision.datasets.LFWPeople(root='~/data/imagenet', split= "test", download=True, transform=_default_t)
     import random
-    seed1, seed2 = random.randint(0, len(dataset)), random.randint(0, len(dataset))
+    # seed1, seed2 = random.randint(0, len(dataset)), random.randint(0, len(dataset))
+    initial_data = torch.stack([ dataset[seed][0] for seed in [random.randint(0, len(dataset)) for _ in range(0, cfg.case.user.num_data_points)] ])
+    print("initial data len: {}".format(len(initial_data)))
     reconstructed_user_data, stats = attacker.reconstruct(server_payload=[server_payload], shared_data=[shared_data], 
-                                                        server_secrets={}, dryrun=cfg.dryrun, initial_data=torch.stack([dataset[seed1][0], dataset[seed2][0]]))
+                                                        server_secrets={}, dryrun=cfg.dryrun, initial_data=initial_data)
 
     print("Reconstruction stats:")
     # compute evaluation metrics 
@@ -80,5 +81,5 @@ for index in range(0, 3):
         metrics = None
     print(metrics)
     # plot reconstructed data
-    user.plot(reconstructed_user_data, save_file='/user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_flickr_post{}.png'.format(index))
+    user.plot(reconstructed_user_data, save_file='/user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/{}_flickr_{}_post{}_1.png'.format(cfg.case.model , cfg.case.user.num_data_points ,index))
     print("========================================================================\n")

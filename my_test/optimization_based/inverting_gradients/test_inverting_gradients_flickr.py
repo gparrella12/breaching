@@ -35,7 +35,7 @@ cfg.case.user.provide_labels = False
 cfg.attack.label_strategy = "yin" # also works here, as labels are unique
 
 # Total variation regularization scale value
-cfg.attack.regularization.total_variation.scale = 5e-3
+cfg.attack.regularization.total_variation.scale = 5e-1
 
 # dataset and model instantiation
 cfg.case.data.name = 'flickr_faces'
@@ -60,19 +60,19 @@ server_payload = server.distribute_payload()
 
 shared_data, true_user_data = user.compute_local_updates(server_payload)
 save_path = '/user/gparrella/breaching/my_test/optimization_based/inverting_gradients/results/'
-user.plot(true_user_data, save_file= os.path.join(save_path,'flickr_original.jpg') )
+user.plot(true_user_data, save_file= os.path.join(save_path,'flickr_original_1.jpg') )
 
 ########### Reconstruct user data ###########
 print("Reconstructing user data...")
 import torchvision
 _default_t = torchvision.transforms.ToTensor()
 dataset = torchvision.datasets.LFWPeople(root='~/data/imagenet', split= "test", download=True, transform=_default_t)
-# dataset[0][0].unsqueeze(0)
 import random
-seed1, seed2 = random.randint(0, len(dataset)), random.randint(0, len(dataset))
+
+initial_data = torch.stack([ dataset[seed][0] for seed in [random.randint(0, len(dataset)) for _ in range(0, cfg.case.user.num_data_points)] ])
 reconstructed_user_data, stats = attacker.reconstruct(server_payload=[server_payload], shared_data=[shared_data], 
                                                       server_secrets={}, dryrun=cfg.dryrun, 
-                                                      initial_data=torch.stack([dataset[seed1][0], dataset[seed2][0]]))
+                                                      initial_data=initial_data)
 print("Reconstruction stats:")
 # compute evaluation metrics 
 try:
@@ -84,4 +84,4 @@ except Exception as e:
     metrics = None
 print(metrics)
 # plot reconstructed data
-user.plot(reconstructed_user_data, save_file= os.path.join(save_path,'flickr_reconstructed.jpg'))
+user.plot(reconstructed_user_data, save_file= os.path.join(save_path,'flickr_reconstructed_1.jpg'))

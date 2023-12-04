@@ -1,0 +1,325 @@
+Trial 0
+
+Investigating use case small_batch_imagenet with server type honest_but_curious.
+Seed: 17714
+Model architecture vggface2 loaded with 27,910,327 parameters and 29,712 buffers.
+Overall this is a data ratio of      46:1 for target shape [4, 3, 224, 224] given that num_queries=1.
+User (of type UserSingleStep) with settings:
+    Number of data points: 4
+
+    Threat model:
+    User provides labels: False
+    User provides buffers: True
+    User provides number of data points: True
+
+    Data:
+    Dataset: flickr_faces
+    user: 0
+    
+        
+Server (of type HonestServer) with settings:
+    Threat model: Honest-but-curious
+    Number of planned queries: 1
+    Has external/public data: False
+
+    Model:
+        model specification: vggface2
+        model state: default
+        public buffers: False
+
+    Secrets: {}
+    
+Attacker (of type OptimizationBasedAttacker) with settings:
+    Hyperparameter Template: see-through-gradients
+
+    Objective: Euclidean loss with scale=0.0001 and task reg=0.0
+    Regularizers: Total Variation, scale=0.0001. p=1 q=1. 
+                  Input L^p norm regularization, scale=1e-06, p=2
+                  Deep Inversion Regularization (matching batch norms), scale=0.1, first-bn-mult=10
+    Augmentations: 
+
+    Optimization Setup:
+        optimizer: adam
+        signed: False
+        step_size: 0.1
+        boxed: True
+        max_iterations: 40000
+        step_size_decay: cosine-decay
+        langevin_noise: 0.01
+        warmup: 100
+        grad_clip: None
+        callback: 1000
+        
+Computing user update on user 0 in model mode: training.
+Saved to /user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_flickr_4_pre0.png
+Reconstructing user data...
+Files already downloaded and verified
+initial data len: 4
+Recovered labels [145, 312, 365, 570] through strategy yin.
+| It: 1 | Rec. loss: 31.9856 |  Task loss: 11.9283 | T: 1.16s
+| It: 1001 | Rec. loss: 8.2063 |  Task loss: 0.1022 | T: 214.82s
+| It: 2001 | Rec. loss: 7.9606 |  Task loss: 0.1014 | T: 206.84s
+| It: 3001 | Rec. loss: 7.8421 |  Task loss: 0.1016 | T: 210.34s
+| It: 4001 | Rec. loss: 7.7789 |  Task loss: 0.0977 | T: 208.00s
+| It: 5001 | Rec. loss: 7.6538 |  Task loss: 0.1011 | T: 196.06s
+| It: 6001 | Rec. loss: 7.5154 |  Task loss: 0.0940 | T: 206.05s
+| It: 7001 | Rec. loss: 7.4014 |  Task loss: 0.0944 | T: 201.04s
+| It: 8001 | Rec. loss: 7.2516 |  Task loss: 0.0944 | T: 208.32s
+| It: 9001 | Rec. loss: 7.0726 |  Task loss: 0.0992 | T: 210.37s
+| It: 10001 | Rec. loss: 6.8792 |  Task loss: 0.0956 | T: 205.07s
+| It: 11001 | Rec. loss: 6.6985 |  Task loss: 0.1049 | T: 207.88s
+| It: 12001 | Rec. loss: 6.5088 |  Task loss: 0.0906 | T: 210.21s
+| It: 13001 | Rec. loss: 6.2573 |  Task loss: 0.0929 | T: 207.97s
+| It: 14001 | Rec. loss: 5.9828 |  Task loss: 0.0931 | T: 210.22s
+| It: 15001 | Rec. loss: 5.7015 |  Task loss: 0.0910 | T: 210.47s
+| It: 16001 | Rec. loss: 5.4132 |  Task loss: 0.0882 | T: 214.20s
+| It: 17001 | Rec. loss: 5.1248 |  Task loss: 0.0889 | T: 208.84s
+| It: 18001 | Rec. loss: 4.8101 |  Task loss: 0.0902 | T: 209.09s
+| It: 19001 | Rec. loss: 4.5172 |  Task loss: 0.0872 | T: 207.99s
+| It: 20001 | Rec. loss: 4.1907 |  Task loss: 0.0857 | T: 206.82s
+| It: 21001 | Rec. loss: 3.9092 |  Task loss: 0.0872 | T: 205.54s
+| It: 22001 | Rec. loss: 3.6012 |  Task loss: 0.0825 | T: 213.42s
+| It: 23001 | Rec. loss: 3.2829 |  Task loss: 0.0853 | T: 207.65s
+| It: 24001 | Rec. loss: 3.0202 |  Task loss: 0.0802 | T: 208.52s
+| It: 25001 | Rec. loss: 2.7535 |  Task loss: 0.0790 | T: 201.20s
+| It: 26001 | Rec. loss: 2.5634 |  Task loss: 0.0749 | T: 209.11s
+| It: 27001 | Rec. loss: 2.4027 |  Task loss: 0.0756 | T: 209.60s
+| It: 28001 | Rec. loss: 2.2306 |  Task loss: 0.0739 | T: 207.18s
+| It: 29001 | Rec. loss: 2.1144 |  Task loss: 0.0717 | T: 207.13s
+| It: 30001 | Rec. loss: 1.9885 |  Task loss: 0.0702 | T: 207.60s
+| It: 31001 | Rec. loss: 1.8746 |  Task loss: 0.0694 | T: 212.13s
+| It: 32001 | Rec. loss: 1.7970 |  Task loss: 0.0699 | T: 203.20s
+| It: 33001 | Rec. loss: 1.7169 |  Task loss: 0.0699 | T: 204.14s
+| It: 34001 | Rec. loss: 1.6526 |  Task loss: 0.0679 | T: 205.29s
+| It: 35001 | Rec. loss: 1.6025 |  Task loss: 0.0676 | T: 206.26s
+| It: 36001 | Rec. loss: 1.5623 |  Task loss: 0.0676 | T: 204.16s
+| It: 37001 | Rec. loss: 1.5320 |  Task loss: 0.0675 | T: 208.58s
+| It: 38001 | Rec. loss: 1.5109 |  Task loss: 0.0672 | T: 202.36s
+| It: 39001 | Rec. loss: 1.4993 |  Task loss: 0.0672 | T: 202.32s
+| It: 40000 | Rec. loss: 1.4964 |  Task loss: 0.0673 | T: 203.66s
+Optimal candidate solution with rec. loss 2495.8018 selected.
+Reconstruction stats:
+Starting evaluations for attack effectiveness report...
+The size of tensor a (55) must match the size of tensor b (61) at non-singleton dimension 3
+None
+Saved to /user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_flickr_4_post0.png
+========================================================================
+
+Trial 1
+
+Investigating use case small_batch_imagenet with server type honest_but_curious.
+Seed: 42431
+Model architecture vggface2 loaded with 27,910,327 parameters and 29,712 buffers.
+Overall this is a data ratio of      46:1 for target shape [4, 3, 224, 224] given that num_queries=1.
+User (of type UserSingleStep) with settings:
+    Number of data points: 4
+
+    Threat model:
+    User provides labels: False
+    User provides buffers: True
+    User provides number of data points: True
+
+    Data:
+    Dataset: flickr_faces
+    user: 0
+    
+        
+Server (of type HonestServer) with settings:
+    Threat model: Honest-but-curious
+    Number of planned queries: 1
+    Has external/public data: False
+
+    Model:
+        model specification: vggface2
+        model state: default
+        public buffers: False
+
+    Secrets: {}
+    
+Attacker (of type OptimizationBasedAttacker) with settings:
+    Hyperparameter Template: see-through-gradients
+
+    Objective: Euclidean loss with scale=0.0001 and task reg=0.0
+    Regularizers: Total Variation, scale=0.0001. p=1 q=1. 
+                  Input L^p norm regularization, scale=1e-06, p=2
+                  Deep Inversion Regularization (matching batch norms), scale=0.1, first-bn-mult=10
+    Augmentations: 
+
+    Optimization Setup:
+        optimizer: adam
+        signed: False
+        step_size: 0.1
+        boxed: True
+        max_iterations: 40000
+        step_size_decay: cosine-decay
+        langevin_noise: 0.01
+        warmup: 100
+        grad_clip: None
+        callback: 1000
+        
+Computing user update on user 0 in model mode: training.
+Saved to /user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_flickr_4_pre1.png
+Reconstructing user data...
+Files already downloaded and verified
+initial data len: 4
+Recovered labels [17, 195, 328, 362] through strategy yin.
+| It: 1 | Rec. loss: 34.9697 |  Task loss: 13.0431 | T: 0.29s
+| It: 1001 | Rec. loss: 7.4126 |  Task loss: 0.0788 | T: 200.68s
+| It: 2001 | Rec. loss: 7.0807 |  Task loss: 0.0834 | T: 202.99s
+| It: 3001 | Rec. loss: 6.8961 |  Task loss: 0.0707 | T: 209.61s
+| It: 4001 | Rec. loss: 6.8016 |  Task loss: 0.0705 | T: 201.18s
+| It: 5001 | Rec. loss: 6.6243 |  Task loss: 0.0681 | T: 207.22s
+| It: 6001 | Rec. loss: 6.5641 |  Task loss: 0.0685 | T: 204.62s
+| It: 7001 | Rec. loss: 6.4474 |  Task loss: 0.0701 | T: 211.17s
+| It: 8001 | Rec. loss: 6.2876 |  Task loss: 0.0711 | T: 203.24s
+| It: 9001 | Rec. loss: 6.1089 |  Task loss: 0.0707 | T: 217.51s
+| It: 10001 | Rec. loss: 5.8887 |  Task loss: 0.0671 | T: 207.99s
+| It: 11001 | Rec. loss: 5.7064 |  Task loss: 0.0625 | T: 209.84s
+| It: 12001 | Rec. loss: 5.5459 |  Task loss: 0.0597 | T: 210.44s
+| It: 13001 | Rec. loss: 5.3026 |  Task loss: 0.0614 | T: 206.30s
+| It: 14001 | Rec. loss: 5.0530 |  Task loss: 0.0647 | T: 207.46s
+| It: 15001 | Rec. loss: 4.8113 |  Task loss: 0.0622 | T: 209.49s
+| It: 16001 | Rec. loss: 4.5592 |  Task loss: 0.0642 | T: 210.06s
+| It: 17001 | Rec. loss: 4.3016 |  Task loss: 0.0600 | T: 205.53s
+| It: 18001 | Rec. loss: 4.0477 |  Task loss: 0.0647 | T: 204.70s
+| It: 19001 | Rec. loss: 3.7995 |  Task loss: 0.0576 | T: 200.47s
+| It: 20001 | Rec. loss: 3.5432 |  Task loss: 0.0578 | T: 205.72s
+| It: 21001 | Rec. loss: 3.2946 |  Task loss: 0.0582 | T: 207.10s
+| It: 22001 | Rec. loss: 3.0822 |  Task loss: 0.0561 | T: 204.34s
+| It: 23001 | Rec. loss: 2.8638 |  Task loss: 0.0580 | T: 209.57s
+| It: 24001 | Rec. loss: 2.6651 |  Task loss: 0.0559 | T: 206.21s
+| It: 25001 | Rec. loss: 2.4831 |  Task loss: 0.0550 | T: 205.99s
+| It: 26001 | Rec. loss: 2.3126 |  Task loss: 0.0524 | T: 207.86s
+| It: 27001 | Rec. loss: 2.1647 |  Task loss: 0.0523 | T: 203.76s
+| It: 28001 | Rec. loss: 2.0298 |  Task loss: 0.0506 | T: 205.78s
+| It: 29001 | Rec. loss: 1.9071 |  Task loss: 0.0495 | T: 207.56s
+| It: 30001 | Rec. loss: 1.8019 |  Task loss: 0.0489 | T: 205.40s
+| It: 31001 | Rec. loss: 1.7036 |  Task loss: 0.0481 | T: 206.95s
+| It: 32001 | Rec. loss: 1.6266 |  Task loss: 0.0491 | T: 210.67s
+| It: 33001 | Rec. loss: 1.5616 |  Task loss: 0.0477 | T: 205.16s
+| It: 34001 | Rec. loss: 1.5066 |  Task loss: 0.0477 | T: 208.73s
+| It: 35001 | Rec. loss: 1.4585 |  Task loss: 0.0468 | T: 205.17s
+| It: 36001 | Rec. loss: 1.4236 |  Task loss: 0.0467 | T: 206.34s
+| It: 37001 | Rec. loss: 1.3967 |  Task loss: 0.0466 | T: 207.27s
+| It: 38001 | Rec. loss: 1.3785 |  Task loss: 0.0465 | T: 210.01s
+| It: 39001 | Rec. loss: 1.3684 |  Task loss: 0.0466 | T: 206.95s
+| It: 40000 | Rec. loss: 1.3659 |  Task loss: 0.0466 | T: 205.36s
+Optimal candidate solution with rec. loss 3571.4551 selected.
+Reconstruction stats:
+Starting evaluations for attack effectiveness report...
+The size of tensor a (55) must match the size of tensor b (61) at non-singleton dimension 3
+None
+Saved to /user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_flickr_4_post1.png
+========================================================================
+
+Trial 2
+
+Investigating use case small_batch_imagenet with server type honest_but_curious.
+Seed: 1404
+Model architecture vggface2 loaded with 27,910,327 parameters and 29,712 buffers.
+Overall this is a data ratio of      46:1 for target shape [4, 3, 224, 224] given that num_queries=1.
+User (of type UserSingleStep) with settings:
+    Number of data points: 4
+
+    Threat model:
+    User provides labels: False
+    User provides buffers: True
+    User provides number of data points: True
+
+    Data:
+    Dataset: flickr_faces
+    user: 0
+    
+        
+Server (of type HonestServer) with settings:
+    Threat model: Honest-but-curious
+    Number of planned queries: 1
+    Has external/public data: False
+
+    Model:
+        model specification: vggface2
+        model state: default
+        public buffers: False
+
+    Secrets: {}
+    
+Attacker (of type OptimizationBasedAttacker) with settings:
+    Hyperparameter Template: see-through-gradients
+
+    Objective: Euclidean loss with scale=0.0001 and task reg=0.0
+    Regularizers: Total Variation, scale=0.0001. p=1 q=1. 
+                  Input L^p norm regularization, scale=1e-06, p=2
+                  Deep Inversion Regularization (matching batch norms), scale=0.1, first-bn-mult=10
+    Augmentations: 
+
+    Optimization Setup:
+        optimizer: adam
+        signed: False
+        step_size: 0.1
+        boxed: True
+        max_iterations: 40000
+        step_size_decay: cosine-decay
+        langevin_noise: 0.01
+        warmup: 100
+        grad_clip: None
+        callback: 1000
+        
+Computing user update on user 0 in model mode: training.
+Saved to /user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_flickr_4_pre2.png
+Reconstructing user data...
+Files already downloaded and verified
+initial data len: 4
+Recovered labels [51, 399, 855, 983] through strategy yin.
+| It: 1 | Rec. loss: 29.8691 |  Task loss: 15.4478 | T: 0.20s
+| It: 1001 | Rec. loss: 6.9820 |  Task loss: 0.0731 | T: 207.71s
+| It: 2001 | Rec. loss: 6.6150 |  Task loss: 0.0601 | T: 220.57s
+| It: 3001 | Rec. loss: 6.4504 |  Task loss: 0.0616 | T: 207.44s
+| It: 4001 | Rec. loss: 6.3530 |  Task loss: 0.0617 | T: 212.45s
+| It: 5001 | Rec. loss: 6.2187 |  Task loss: 0.0626 | T: 206.89s
+| It: 6001 | Rec. loss: 6.1023 |  Task loss: 0.0621 | T: 199.31s
+| It: 7001 | Rec. loss: 5.9259 |  Task loss: 0.0618 | T: 205.31s
+| It: 8001 | Rec. loss: 5.7657 |  Task loss: 0.0553 | T: 203.37s
+| It: 9001 | Rec. loss: 5.6342 |  Task loss: 0.0590 | T: 202.52s
+| It: 10001 | Rec. loss: 5.4413 |  Task loss: 0.0551 | T: 210.09s
+| It: 11001 | Rec. loss: 5.2325 |  Task loss: 0.0585 | T: 207.94s
+| It: 12001 | Rec. loss: 5.0233 |  Task loss: 0.0556 | T: 208.97s
+| It: 13001 | Rec. loss: 4.8329 |  Task loss: 0.0554 | T: 205.80s
+| It: 14001 | Rec. loss: 4.5920 |  Task loss: 0.0552 | T: 205.73s
+| It: 15001 | Rec. loss: 4.3612 |  Task loss: 0.0541 | T: 211.65s
+| It: 16001 | Rec. loss: 4.1137 |  Task loss: 0.0499 | T: 209.86s
+| It: 17001 | Rec. loss: 3.8800 |  Task loss: 0.0484 | T: 207.29s
+| It: 18001 | Rec. loss: 3.6449 |  Task loss: 0.0487 | T: 209.88s
+| It: 19001 | Rec. loss: 3.4166 |  Task loss: 0.0484 | T: 210.10s
+| It: 20001 | Rec. loss: 3.2070 |  Task loss: 0.0499 | T: 202.91s
+| It: 21001 | Rec. loss: 2.9919 |  Task loss: 0.0485 | T: 208.07s
+| It: 22001 | Rec. loss: 2.7905 |  Task loss: 0.0457 | T: 207.22s
+| It: 23001 | Rec. loss: 2.5799 |  Task loss: 0.0474 | T: 208.67s
+| It: 24001 | Rec. loss: 2.3973 |  Task loss: 0.0484 | T: 210.55s
+| It: 25001 | Rec. loss: 2.2310 |  Task loss: 0.0472 | T: 211.55s
+| It: 26001 | Rec. loss: 2.0679 |  Task loss: 0.0467 | T: 207.15s
+| It: 27001 | Rec. loss: 1.9120 |  Task loss: 0.0461 | T: 211.50s
+| It: 28001 | Rec. loss: 1.7916 |  Task loss: 0.0451 | T: 206.51s
+| It: 29001 | Rec. loss: 1.6824 |  Task loss: 0.0452 | T: 207.14s
+| It: 30001 | Rec. loss: 1.5898 |  Task loss: 0.0443 | T: 206.77s
+| It: 31001 | Rec. loss: 1.5094 |  Task loss: 0.0441 | T: 209.93s
+| It: 32001 | Rec. loss: 1.4312 |  Task loss: 0.0439 | T: 209.13s
+| It: 33001 | Rec. loss: 1.3693 |  Task loss: 0.0426 | T: 207.13s
+| It: 34001 | Rec. loss: 1.3176 |  Task loss: 0.0425 | T: 218.93s
+| It: 35001 | Rec. loss: 1.2725 |  Task loss: 0.0421 | T: 208.45s
+| It: 36001 | Rec. loss: 1.2444 |  Task loss: 0.0420 | T: 206.46s
+| It: 37001 | Rec. loss: 1.2238 |  Task loss: 0.0418 | T: 210.01s
+| It: 38001 | Rec. loss: 1.2050 |  Task loss: 0.0417 | T: 208.59s
+| It: 39001 | Rec. loss: 1.1969 |  Task loss: 0.0415 | T: 207.24s
+| It: 40000 | Rec. loss: 1.1949 |  Task loss: 0.0415 | T: 207.28s
+Optimal candidate solution with rec. loss 4415.0347 selected.
+Reconstruction stats:
+Starting evaluations for attack effectiveness report...
+/usr/local/lib/python3.8/dist-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+The size of tensor a (55) must match the size of tensor b (61) at non-singleton dimension 3
+None
+Saved to /user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/vggface_flickr_4_post2.png
+========================================================================
+

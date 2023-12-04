@@ -39,7 +39,7 @@ Attacker (of type OptimizationBasedAttacker) with settings:
     Hyperparameter Template: invertinggradients
 
     Objective: Cosine Similarity with scale=1.0 and task reg=0.0
-    Regularizers: Total Variation, scale=0.005. p=1 q=1. 
+    Regularizers: Total Variation, scale=0.5. p=1 q=1. 
     Augmentations: 
 
     Optimization Setup:
@@ -55,23 +55,50 @@ Attacker (of type OptimizationBasedAttacker) with settings:
         callback: 1000
         
 Computing user update on user 0 in model mode: eval.
-Saved to /user/gparrella/breaching/my_test/optimization_based/inverting_gradients/results/flickr_original.jpg
+Saved to /user/gparrella/breaching/my_test/optimization_based/inverting_gradients/results/flickr_original_1.jpg
 Reconstructing user data...
 Files already downloaded and verified
-Recovered labels [60] through strategy yin.
-| It: 1 | Rec. loss: 0.0216 |  Task loss: 0.0000 | T: 10.74s
-| It: 1001 | Rec. loss: 0.0061 |  Task loss: 0.0000 | T: 1132.77s
-| It: 2001 | Rec. loss: 0.0057 |  Task loss: 0.0000 | T: 1130.64s
-| It: 3001 | Rec. loss: 0.0059 |  Task loss: 0.0000 | T: 1126.15s
-| It: 4001 | Rec. loss: 0.0056 |  Task loss: 0.0000 | T: 1131.94s
-| It: 5001 | Rec. loss: 0.0060 |  Task loss: 0.0000 | T: 1132.29s
-| It: 6001 | Rec. loss: 0.0064 |  Task loss: 0.0000 | T: 1133.18s
-| It: 7001 | Rec. loss: 0.0066 |  Task loss: 0.0000 | T: 1133.33s
-| It: 8001 | Rec. loss: 0.0071 |  Task loss: 0.0000 | T: 1130.45s
-| It: 9001 | Rec. loss: 0.0066 |  Task loss: 0.0000 | T: 1168.71s
-| It: 10001 | Rec. loss: 0.0073 |  Task loss: 0.0000 | T: 1765.21s
-| It: 11001 | Rec. loss: 0.0094 |  Task loss: 0.0000 | T: 1814.67s
-| It: 12001 | Rec. loss: 0.0077 |  Task loss: 0.0000 | T: 1777.11s
-| It: 13001 | Rec. loss: 0.0062 |  Task loss: 0.0000 | T: 1767.54s
-| It: 14001 | Rec. loss: 0.0052 |  Task loss: 0.0000 | T: 1769.66s
-| It: 15001 | Rec. loss: 0.0073 |  Task loss: 0.0000 | T: 1776.28s
+Recovered labels [583] through strategy yin.
+| It: 1 | Rec. loss: 0.0981 |  Task loss: 0.0000 | T: 16.70s
+| It: 1001 | Rec. loss: 0.0460 |  Task loss: 0.0000 | T: 2339.51s
+| It: 2001 | Rec. loss: 0.0429 |  Task loss: 0.0000 | T: 2333.09s
+| It: 3001 | Rec. loss: 0.0420 |  Task loss: 0.0000 | T: 2335.84s
+| It: 4001 | Rec. loss: 0.0410 |  Task loss: 0.0000 | T: 2339.99s
+| It: 5001 | Rec. loss: 0.0408 |  Task loss: 0.0000 | T: 2334.63s
+| It: 6001 | Rec. loss: 0.0409 |  Task loss: 0.0000 | T: 2339.87s
+| It: 7001 | Rec. loss: 0.0412 |  Task loss: 0.0000 | T: 2340.14s
+| It: 8001 | Rec. loss: 0.0408 |  Task loss: 0.0000 | T: 2329.35s
+| It: 9001 | Rec. loss: 0.0414 |  Task loss: 0.0000 | T: 2337.33s
+| It: 10001 | Rec. loss: 0.0409 |  Task loss: 0.0000 | T: 2336.03s
+| It: 11001 | Rec. loss: 0.0409 |  Task loss: 0.0000 | T: 2345.02s
+| It: 12001 | Rec. loss: 0.0410 |  Task loss: 0.0000 | T: 2339.22s
+| It: 13001 | Rec. loss: 0.0167 |  Task loss: 0.0000 | T: 2335.03s
+| It: 14001 | Rec. loss: 0.0167 |  Task loss: 0.0000 | T: 2339.66s
+| It: 15001 | Rec. loss: 0.0165 |  Task loss: 0.0000 | T: 2336.26s
+| It: 16001 | Rec. loss: 0.0165 |  Task loss: 0.0000 | T: 2331.48s
+| It: 17001 | Rec. loss: 0.0164 |  Task loss: 0.0000 | T: 2341.37s
+| It: 18001 | Rec. loss: 0.0164 |  Task loss: 0.0000 | T: 2333.23s
+| It: 19001 | Rec. loss: 0.0164 |  Task loss: 0.0000 | T: 2337.19s
+| It: 20001 | Rec. loss: 0.0164 |  Task loss: 0.0000 | T: 2338.39s
+| It: 21001 | Rec. loss: 0.0152 |  Task loss: 0.0000 | T: 2333.06s
+| It: 22001 | Rec. loss: 0.0156 |  Task loss: 0.0000 | T: 2337.50s
+| It: 23001 | Rec. loss: 0.0159 |  Task loss: 0.0000 | T: 2341.35s
+| It: 24001 | Rec. loss: 0.0162 |  Task loss: 0.0000 | T: 2028.62s
+| It: 25001 | Rec. loss: 0.0163 |  Task loss: 0.0000 | T: 1127.60s
+| It: 26001 | Rec. loss: 0.0165 |  Task loss: 0.0000 | T: 1128.15s
+| It: 27001 | Rec. loss: 0.0166 |  Task loss: 0.0000 | T: 1130.02s
+| It: 28001 | Rec. loss: 0.0166 |  Task loss: 0.0000 | T: 1128.41s
+| It: 29001 | Rec. loss: 0.0167 |  Task loss: 0.0000 | T: 1130.44s
+| It: 30001 | Rec. loss: 0.0169 |  Task loss: 0.0000 | T: 1127.49s
+| It: 31001 | Rec. loss: 0.0171 |  Task loss: 0.0000 | T: 1131.08s
+| It: 32000 | Rec. loss: 0.0173 |  Task loss: 0.0000 | T: 1125.96s
+Optimal candidate solution with rec. loss 0.0044 selected.
+Reconstruction stats:
+Starting evaluations for attack effectiveness report...
+/usr/local/lib/python3.8/dist-packages/torchvision/models/_utils.py:208: UserWarning: The parameter 'pretrained' is deprecated since 0.13 and may be removed in the future, please use 'weights' instead.
+  warnings.warn(
+/usr/local/lib/python3.8/dist-packages/torchvision/models/_utils.py:223: UserWarning: Arguments other than a weight enum or `None` for 'weights' are deprecated since 0.13 and may be removed in the future. The current behavior is equivalent to passing `weights=AlexNet_Weights.IMAGENET1K_V1`. You can also use `weights=AlexNet_Weights.DEFAULT` to get the most up-to-date weights.
+  warnings.warn(msg)
+The size of tensor a (55) must match the size of tensor b (61) at non-singleton dimension 3
+None
+Saved to /user/gparrella/breaching/my_test/optimization_based/inverting_gradients/results/flickr_reconstructed_1.jpg
