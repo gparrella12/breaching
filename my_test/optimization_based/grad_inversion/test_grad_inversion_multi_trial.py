@@ -32,10 +32,10 @@ for index in range(0, 3):
     cfg.case.data.size = len(os.listdir("/user/gparrella/data/flickr_images"))
     cfg.case.data.classes = cfg.case.data.size
 
-    cfg.case.user.num_data_points = 8
+    cfg.case.user.num_data_points = 16
 
     cfg.case.model = "vggface2"
-    cfg.attack.optim.max_iterations = 160000
+    cfg.attack.optim.max_iterations = 320000
     #cfg.attack.optim.step_size = 0.1
     cfg.attack.optim.warmup = 100
 
@@ -55,7 +55,7 @@ for index in range(0, 3):
     server_payload = server.distribute_payload()
     shared_data, true_user_data = user.compute_local_updates(server_payload)
 
-    user.plot(true_user_data, save_file='/user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/{}_flickr_{}_pre{}_1.png'.format(cfg.case.model , cfg.case.user.num_data_points ,index))
+    user.plot(true_user_data, save_file='/user/gparrella/breaching/my_test/optimization_based/grad_inversion/results/{}_flickr_{}_pre{}.png'.format(cfg.case.model , cfg.case.user.num_data_points ,index))
 
     ########### Reconstruct user data ###########
     print("Reconstructing user data...")
